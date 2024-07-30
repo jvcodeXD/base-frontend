@@ -19,7 +19,8 @@
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "vue": "^3.4.29",
-    "vue-router": "^4.3.3"
+    "vue-router": "^4.3.3",
+    "vue3-toastify": "^0.2.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",

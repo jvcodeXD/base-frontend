@@ -44,6 +44,7 @@
   </div>
 </template>
 <script>
+import { toast } from 'vue3-toastify'
 export default {
   name: 'Login',
   data() {
@@ -63,13 +64,15 @@ export default {
           .post('/auth/login', this.usuario)
           .then((res) => {
             localStorage.setItem('usuario', JSON.stringify(res.data))
-            this.$axios.defaults.headers.common[
-              'Authorization'
-            ] = `Bearer ${res.data.token}`
-            const link = `/usuario/${res.data.rol}/`
+            const link = `/${res.data.rol.toLowerCase()}/`
             this.$router.push(link)
+            window.location.reload()
           })
-          .catch((err) => console.log(err))
+          .catch((err) => {
+            toast.error(err.response.data.message, {
+              autoClose: 1500,
+            })
+          })
       }
     },
     goBack() {

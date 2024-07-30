@@ -1,7 +1,12 @@
 import axios from 'axios'
 
-const axiosIntance = axios.create({
+const axiosInstance = axios.create({
   baseURL: 'http://localhost:4000/api',
 })
 
-export default axiosIntance
+const token = JSON.parse(localStorage.getItem('usuario'))?.token
+if (token) {
+  axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + token
+}
+
+export default axiosInstance
